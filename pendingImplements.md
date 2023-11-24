@@ -1,6 +1,5 @@
+<h1>+++EZ1s:+++</h1>
 ```
-+++EZ1s:+++
-
             	  _)_
                .-'(/ '-.
               /    `    \
@@ -60,9 +59,8 @@ cadena de conexion = db_url = "mongodb+srv://<user>:<pw>@ulsa.cpqqpie.mongodb.ne
 <li>Mejorar esteticamente el programa(Nuevos menus, colores, animaciones etc)</li>
 </ul>
 
+<h1>+++BadBoyz:+++</h1>
 ```
-+++BadBoyz:+++
-
                   .--""""--.
 nnnnnnnnnnnnnnnn,'.n*""""*N.`.#######################
 NNNNNNNNNNNNNNN/ J',n*""*n.`L \##### ### ### ### ####
@@ -80,8 +78,11 @@ NNNNNNNNNNNNNNNNNN`-..__..-'NNNNNNNNNNNNNNNNNNNNNNNNN
 <li>Refinar busqueda(implemetar islike etc)</li>
 <li>Deployment</li>
 </ul>
+
+<h1>+++Devil Shit:+++</h1>
+
 ```
-+++Devil Shit:+++
+
 
           (                      )
           |\    _,--------._    / |
