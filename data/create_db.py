@@ -1,6 +1,5 @@
 from utils.clear_console import clear_console
-from utils.ascii_arts import draw_pingu
-from utils.ascii_arts import draw_welcome_message
+from utils.ascii_arts import draw_pingu,draw_welcome_message,draw_videogames,draw_movies,draw_music,draw_ulsa,draw_tercer_parcial
 def create_db():
     print(draw_pingu())
     print(draw_welcome_message())
@@ -17,13 +16,14 @@ def create_db():
     clear_console()
     print("Excelente eleccion! :)")
     if schema == "1":
-        print("Videojuegos")
+        print(draw_videogames)
     elif schema == "2":
-        print("Musica")
+        print(draw_music)
     elif schema == "3":
-        print("Peliculas")
+        print(draw_movies)
     else:
-        print("Ulsa")
+        print(draw_ulsa)
+        print(draw_tercer_parcial())
     database = input("¿Cuál será el nombre de tu base de datos? ")
     collection_name = input("Por último, la colección: ")
 

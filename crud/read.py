@@ -13,21 +13,38 @@ def search_document(collection, schema, print_results=False):
     clear_console()
     def prompt_search_options(schema):
         if schema == "1":  # Videojuegos
-            return input("Elija condición de búsqueda:\n1. titulo\n2. clasificacion\n3. genero\nIngrese su elección (1-3): "), ["titulo", "clasificacion", "genero"]
+            return ["titulo", "clasificacion", "genero"]
         elif schema == "2":  # Música
-            return input("Elija condición de búsqueda:\n1. nombre_cancion\n2. Album\n3. genero_musical\nIngrese su elección (1-3): "), ["nombre_cancion", "Album", "genero_musical"]
+            return ["nombre_cancion", "Album", "genero_musical"]
         elif schema == "3":  # Películas
-            return input("Elija condición de búsqueda:\n1. nombre_peli\n2. director\n3. genero_pelicula\nIngrese su elección (1-3): "), ["nombre_peli", "director", "genero_pelicula"]
+            return ["nombre_peli", "director", "genero_pelicula"]
         else:  # Default (Examen Tercer Parcial)
-            return input("Elija condición de búsqueda:\n1. CURP\n2. calificacion\n3. materia\nIngrese su elección (1-3): "), ["CURP", "calificacion", "materia"]
+            return ["CURP", "calificacion", "materia"]
 
-    header, fields = prompt_search_options(schema)
+    fields = prompt_search_options(schema)
+    print("Elija condición de búsqueda:")
+    for idx, field in enumerate(fields, 1):
+        print(f"{idx}. {field}")
+    header = input("Ingrese su elección (1-3): ")
+    
     if header not in ["1", "2", "3"]:
         print("Error: Ingrese una opción correcta")
         return None
 
-    query = input("Ingrese término a buscar: ")
+    # Solicitar el término de búsqueda
+    query_input = input("Ingrese término a buscar: ")
     field = fields[int(header) - 1]
+    
+    # Si el campo es 'calificacion' y el esquema es el default, convierte el término a float
+    if schema == "0" and field == "calificacion":
+        try:
+            query = float(query_input)
+        except ValueError:
+            print("La calificación debe ser un número.")
+            return None
+    else:
+        query = query_input
+
     documents = list(collection.find({field: query}))
 
     if not documents:
