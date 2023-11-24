@@ -61,8 +61,13 @@ cadena de conexion = db_url = "mongodb+srv://<user>:<pw>@ulsa.cpqqpie.mongodb.ne
 	end;
 ```
 
+
+<h1>+++BadBoyz:+++</h1>
+
+
+
 ```
-+++BadBoyz:+++
+
 
                   .--""""--.
 nnnnnnnnnnnnnnnn,'.n*""""*N.`.#######################
@@ -81,8 +86,14 @@ NNNNNNNNNNNNNNNNNN`-..__..-'NNNNNNNNNNNNNNNNNNNNNNNNN
 <li>Refinar busqueda(implemetar islike etc)</li>
 <li>Deployment</li>
 </ul>
+
+
+<h1>+++Devil Shit:+++</h1>
+
+
+
 ```
-+++Devil Shit:+++
+
 
           (                      )
           |\    _,--------._    / |
@@ -102,6 +113,8 @@ NNNNNNNNNNNNNNNNNN`-..__..-'NNNNNNNNNNNNNNNNNNNNNNNNN
                    `.     ,'            
 ```
 
-Permitir ver y gestionar bases de datos creadas con este programa(Atlas API)
-Implementar custom_schema y editar schemas predefinidos 
 
+<ul>
+<li>Permitir ver y gestionar bases de datos creadas con este programa(Atlas API)</li>
+<li>Implementar custom_schema y editar schemas predefinidos</li> 
+</ul>
