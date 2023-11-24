@@ -65,7 +65,37 @@ def connect_to_mongodb(db_url, database, collection_name):
     except pymongo.errors.ConnectionFailure as e:
         print(f"Error al conectar la base de datos: {e}")
         return None, None
+#CRUD
 
+#Create
+def insert_document(collection, schema):
+    if schema == "1":  
+        titulo = input("Ingrese el título del videojuego: ")
+        clasificacion = input("Ingrese la clasificación del videojuego: ")
+        genero = input("Ingrese el género del videojuego: ")
+        new_document = {"titulo": titulo, "clasificacion": clasificacion, "genero": genero}
+
+    elif schema == "2": 
+        nombre_cancion = input("Ingrese el nombre de la canción: ")
+        album = input("Ingrese el nombre del álbum: ")
+        genero_musical = input("Ingrese el género musical: ")
+        new_document = {"nombre_cancion": nombre_cancion, "album": album, "genero_musical": genero_musical}
+
+    elif schema == "3":  
+        nombre_peli = input("Ingrese el nombre de la película: ")
+        director = input("Ingrese el nombre del director: ")
+        genero_pelicula = input("Ingrese el género de la película: ")
+        new_document = {"nombre_peli": nombre_peli, "director": director, "genero_pelicula": genero_pelicula}
+
+    else:  
+        curp = input("Ingrese el CURP: ")
+        calificacion = float(input("Ingrese la calificación: "))
+        materia = input("Ingrese la materia: ")
+        new_document = {"CURP": curp, "calificacion": calificacion, "materia": materia}
+
+    collection.insert_one(new_document)
+    print("Documento insertado exitosamente.")
+#Read   
 def print_collection_content(collection):
     documents = collection.find()
     for document in documents:
@@ -103,116 +133,102 @@ def search_document(collection, schema, print_results=False):
             print(doc)
 
     return documents
-
-
-
-def insert_document(collection, schema):
-    if schema == "1":  
-        titulo = input("Ingrese el título del videojuego: ")
-        clasificacion = input("Ingrese la clasificación del videojuego: ")
-        genero = input("Ingrese el género del videojuego: ")
-        new_document = {"titulo": titulo, "clasificacion": clasificacion, "genero": genero}
-
-    elif schema == "2": 
-        nombre_cancion = input("Ingrese el nombre de la canción: ")
-        album = input("Ingrese el nombre del álbum: ")
-        genero_musical = input("Ingrese el género musical: ")
-        new_document = {"nombre_cancion": nombre_cancion, "album": album, "genero_musical": genero_musical}
-
-    elif schema == "3":  
-        nombre_peli = input("Ingrese el nombre de la película: ")
-        director = input("Ingrese el nombre del director: ")
-        genero_pelicula = input("Ingrese el género de la película: ")
-        new_document = {"nombre_peli": nombre_peli, "director": director, "genero_pelicula": genero_pelicula}
-
-    else:  
-        curp = input("Ingrese el CURP: ")
-        calificacion = float(input("Ingrese la calificación: "))
-        materia = input("Ingrese la materia: ")
-        new_document = {"CURP": curp, "calificacion": calificacion, "materia": materia}
-
-    collection.insert_one(new_document)
-    print("Documento insertado exitosamente.")
-
+#Update
 def update_document(collection, schema):
-    if schema == "1":  # Videojuegos
-        id = input("Ingrese el identificador único del videojuego a actualizar: ")
-        nuevo_titulo = input("Ingrese el nuevo título (deje en blanco para mantener el actual): ")
-        nueva_clasificacion = input("Ingrese la nueva clasificación (deje en blanco para mantener la actual): ")
-        nuevo_genero = input("Ingrese el nuevo género (deje en blanco para mantener el actual): ")
+    documents = search_document(collection, schema, print_results=True)
+    if documents is None or len(documents) == 0:
+        return
 
-        update_query = {}
-        if nuevo_titulo:
-            update_query["titulo"] = nuevo_titulo
-        if nueva_clasificacion:
-            update_query["clasificacion"] = nueva_clasificacion
-        if nuevo_genero:
-            update_query["genero"] = nuevo_genero
+    # Listar los documentos y pedir al usuario que elija uno para actualizar
+    print("\nSeleccione el documento que desea actualizar:")
+    for i, doc in enumerate(documents):
+        print(f"{i + 1}. {doc}")
 
-    elif schema == "2":  # Música
-        id = input("Ingrese el identificador único de la canción a actualizar: ")
-        nuevo_nombre = input("Ingrese el nuevo nombre de la canción (deje en blanco para mantener el actual): ")
-        nuevo_album = input("Ingrese el nuevo nombre del álbum (deje en blanco para mantener el actual): ")
-        nuevo_genero_musical = input("Ingrese el nuevo género musical (deje en blanco para mantener el actual): ")
+    try:
+        choice = int(input("\nIngrese el número del documento a actualizar (o 0 para cancelar): "))
+        if choice == 0:
+            print("Actualización cancelada.")
+            return
+        elif 1 <= choice <= len(documents):
+            document_to_update = documents[choice - 1]
+            
+            # Pedir al usuario que ingrese los nuevos valores
+            # Aquí, puedes añadir o modificar los campos según tus necesidades y esquema de base de datos
+            new_values = {}
+            if schema == "1":  # Videojuegos
+                new_values["titulo"] = input("Ingrese el nuevo título (deje en blanco para mantener el actual): ")
+                new_values["clasificacion"] = input("Ingrese la nueva clasificación (deje en blanco para mantener la actual): ")
+                new_values["genero"] = input("Ingrese el nuevo género (deje en blanco para mantener el actual): ")
+            elif schema == "2":  # Música
+                new_values["nombre_cancion"] = input("Ingrese el nuevo nombre de la canción (deje en blanco para mantener el actual): ")
+                new_values["album"] = input("Ingrese el nuevo nombre del álbum (deje en blanco para mantener el actual): ")
+                new_values["genero_musical"] = input("Ingrese el nuevo género musical (deje en blanco para mantener el actual): ")
+            elif schema == "3":  # Películas
+                new_values["nombre_peli"] = input("Ingrese el nuevo nombre de la película (deje en blanco para mantener el actual): ")
+                new_values["director"] = input("Ingrese el nuevo director (deje en blanco para mantener el actual): ")
+                new_values["genero_pelicula"] = input("Ingrese el nuevo género de la película (deje en blanco para mantener el actual): ")
+            else:  # Default (Examen Tercer Parcial)
+                new_values["CURP"] = input("Ingrese el nuevo CURP (deje en blanco para mantener el actual): ")
+                new_calificacion = input("Ingrese la nueva calificación (deje en blanco para mantener la actual): ")
+                new_values["calificacion"] = float(new_calificacion) if new_calificacion else None
+                new_values["materia"] = input("Ingrese la nueva materia (deje en blanco para mantener el actual): ")
 
-        update_query = {}
-        if nuevo_nombre:
-            update_query["nombre_cancion"] = nuevo_nombre
-        if nuevo_album:
-            update_query["album"] = nuevo_album
-        if nuevo_genero_musical:
-            update_query["genero_musical"] = nuevo_genero_musical
+            # Eliminar claves vacías
+            update_query = {k: v for k, v in new_values.items() if v != ""}
+            
+            # Actualizar el documento
+            result = collection.update_one({"_id": document_to_update["_id"]}, {"$set": update_query})
+            if result.modified_count > 0:
+                print("Documento actualizado exitosamente.")
+            else:
+                print("No se realizaron cambios en el documento.")
+        else:
+            print("Número de documento inválido. Operación cancelada.")
+    except ValueError:
+        print("Entrada inválida. Operación cancelada.")
 
-    elif schema == "3":  # Películas
-        id = input("Ingrese el identificador único de la película a actualizar: ")
-        nuevo_nombre_peli = input("Ingrese el nuevo nombre de la película (deje en blanco para mantener el actual): ")
-        nuevo_director = input("Ingrese el nuevo director (deje en blanco para mantener el actual): ")
-        nuevo_genero_pelicula = input("Ingrese el nuevo género de la película (deje en blanco para mantener el actual): ")
-
-        update_query = {}
-        if nuevo_nombre_peli:
-            update_query["nombre_peli"] = nuevo_nombre_peli
-        if nuevo_director:
-            update_query["director"] = nuevo_director
-        if nuevo_genero_pelicula:
-            update_query["genero_pelicula"] = nuevo_genero_pelicula
-
-    else:  # Default (Examen Tercer Parcial)
-        curp = input("Ingrese el CURP del documento a actualizar: ")
-        new_curp = input("Ingrese el nuevo CURP (deje en blanco para mantener el actual): ")
-        new_calificacion = input("Ingrese la nueva calificación (deje en blanco para mantener la actual): ")
-        new_materia = input("Ingrese la nueva materia (deje en blanco para mantener la actual): ")
-
-        update_query = {}
-        if new_curp:
-            update_query["CURP"] = new_curp
-        if new_calificacion:
-            update_query["calificacion"] = float(new_calificacion) if new_calificacion else None
-        if new_materia:
-            update_query["materia"] = new_materia
-
-    if schema in ["1", "2", "3"]:
-        result = collection.update_one({"id": id}, {"$set": update_query})
-    else:
-        result = collection.update_one({"CURP": curp}, {"$set": update_query})
-
-    if result.modified_count > 0:
-        print("Documento actualizado exitosamente.")
-    else:
-        print("Documento no encontrado o sin cambios.")
-
+#Delete
 def delete_document(collection, schema):
-    if schema in ["1", "2", "3"]:
-        id = input("Ingrese el identificador único del documento a eliminar: ")
-        result = collection.delete_one({"id": id})
-    else:  # Default (Examen Tercer Parcial)
-        curp = input("Ingrese el CURP del documento a eliminar: ")
-        result = collection.delete_one({"CURP": curp})
+    documents = search_document(collection, schema, print_results=True)
+    if documents is None or len(documents) == 0:
+        return
 
-    if result.deleted_count > 0:
-        print("Documento eliminado exitosamente.")
-    else:
-        print("Documento no encontrado.")
+    # Opciones de eliminación
+    print("\nSeleccione el documento que desea eliminar:")
+    for i, doc in enumerate(documents):
+        print(f"{i + 1}. {doc}")
+    print("0. Cancelar")
+    print("99. Eliminar todos los documentos encontrados")
+
+    try:
+        choice = int(input("\nIngrese su elección: "))
+        if choice == 0:
+            print("Eliminación cancelada.")
+            return
+        elif choice == 99:
+            # Confirmar antes de eliminar todos
+            confirm = input("¿Está seguro de que desea eliminar TODOS los documentos encontrados? (y/n): ")
+            if confirm.lower() == 'y':
+                ids_to_delete = [doc["_id"] for doc in documents]
+                result = collection.delete_many({"_id": {"$in": ids_to_delete}})
+                print(f"{result.deleted_count} documentos eliminados exitosamente.")
+            else:
+                print("Eliminación cancelada.")
+        elif 1 <= choice <= len(documents):
+            document_to_delete = documents[choice - 1]
+            confirm = input(f"¿Está seguro de que desea eliminar el documento con ID '{document_to_delete['_id']}'? (y/n): ")
+            if confirm.lower() == 'y':
+                result = collection.delete_one({"_id": document_to_delete["_id"]})
+                if result.deleted_count > 0:
+                    print("Documento eliminado exitosamente.")
+                else:
+                    print("Error al intentar eliminar el documento.")
+            else:
+                print("Eliminación cancelada.")
+        else:
+            print("Número de documento inválido. Operación cancelada.")
+    except ValueError:
+        print("Entrada inválida. Operación cancelada.")
 
 
 def menu():
@@ -258,6 +274,7 @@ def main():
         elif option == "5":
             delete_document(collection, schema)
         elif option == "6":
+            print("Gracias por usar Xiklez CLI DBMGR, hasta pronto! :)")
             break
         else:
             print("Opción inválida. Por favor, ingrese un número del 1 al 6.")
