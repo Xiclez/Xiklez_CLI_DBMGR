@@ -1,6 +1,30 @@
-+++EZ1s:+++
--Si quieren usar mi base de, pedir las credenciales para loguearse
+<h1>+++EZ1s:+++</h1>
+```
+            	  _)_
+               .-'(/ '-.
+              /    `    \
+             /  -     -  \
+            (`  a     a  `)
+             \     ^     /
+              '. '---' .'
+              .-`'---'`-.
+             /           \
+            /  / '   ' \  \
+          _/  /|       |\  \_
+         `/|\` |+++++++|`/|\`
+              /\       /\
+              | `-._.-` |
+              \   / \   /
+              |_ |   | _|
+       jgs    | _|   |_ |
+              (ooO   Ooo)
 
+```
+<ul>
+<li>Si quieren usar mi base de datos, pedir las credenciales para loguearse</li>
+
+
+```
 --Pseudocodigo:
 des = "usar xiklesdb? y/n"
 
@@ -28,18 +52,56 @@ cadena de conexion = db_url = "mongodb+srv://<user>:<pw>@ulsa.cpqqpie.mongodb.ne
 	contunuar flujo linea 48;
 	else
 	end;
-	
--Mejorar esteticamente el programa(Nuevos menus, colores, animaciones etc)
---
-+++BadBoyz:+++
--Implementar custom_schema y editar schemas predefinidos 
+```
+<li>Agregar opcion en menu para crear nueva base de datos</li>
+<li>Agregar opcion en menu para limpiar output</li>
+<li>Agregar Empty State</li>
+<li>Mejorar esteticamente el programa(Nuevos menus, colores, animaciones etc)</li>
+</ul>
 
--Una vez logueados permitir ver y gestionar bases de datos creadas con este programa.
+<h1>+++BadBoyz:+++</h1>
+```
+                  .--""""--.
+nnnnnnnnnnnnnnnn,'.n*""""*N.`.#######################
+NNNNNNNNNNNNNNN/ J',n*""*n.`L \##### ### ### ### ####
+              : J J___/\___L L :#####################
+nnnnnnnnnnnnnn{ [{ `.    ,' }] }## ### ### ### ### ##
+NNNNNNNNNNNNNN: T T /,'`.\ T J :#####################
+               \ L,`*n,,n*',J /
+nnnnnnnnnnnnnnnn`. *n,,,,n* ,'nnnnnnnnnnnnnnnnnnnnnnn
+NNNNNNNNNNNNNNNNNN`-..__..-'NNNNNNNNNNNNNNNNNNNNNNNNN
+```
+<ul>
+<li>Manejar correctamente valores nulos</li>
+<li>Dar esquema de datos adecuado</li>
+<li>Testeo general en busca de errores</li>
+<li>Refinar busqueda(implemetar islike etc)</li>
+<li>Deployment</li>
+</ul>
 
--Debugging:
-*Manejar correctamente valores nulos
-*Testeo general en busca de errores
+<h1>+++Devil Shit:+++</h1>
 
--Deployment
+```
 
 
+          (                      )
+          |\    _,--------._    / |
+          | `.,'            `. /  |
+          `  '              ,-'   '
+           \/_         _   (     /
+          (,-.`.    ,',-.`. `__,'
+           |/#\ ),-','#\`= ,'.` |
+           `._/)  -'.\_,'   ) ))|
+           /  (_.)\     .   -'//
+          (  /\____/\    ) )`'\
+           \ |V----V||  ' ,    \
+            |`- -- -'   ,'   \  \      _____
+     ___    |         .'    \ \  `._,-'     `-
+        `.__,`---^---'       \ ` -'
+           -.______  \ . /  ______,-
+                   `.     ,'            
+```
+<ul>
+<li>Permitir ver y gestionar bases de datos creadas con este programa(Atlas API)</li>
+<li>Implementar custom_schema y editar schemas predefinidos</li> 
+</ul>
