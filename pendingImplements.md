@@ -1,5 +1,6 @@
-<h1>+++EZ1s:+++</h1>
 ```
++++EZ1s:+++
+
             	  _)_
                .-'(/ '-.
               /    `    \
@@ -22,7 +23,11 @@
 ```
 <ul>
 <li>Si quieren usar mi base de datos, pedir las credenciales para loguearse</li>
-
+<li>Agregar opcion en menu para crear nueva base de datos</li>
+<li>Agregar opcion en menu para limpiar output</li>
+<li>Agregar Empty State</li>
+<li>Mejorar esteticamente el programa(Nuevos menus, colores, animaciones etc)</li>
+</ul>
 
 ```
 --Pseudocodigo:
@@ -53,14 +58,10 @@ cadena de conexion = db_url = "mongodb+srv://<user>:<pw>@ulsa.cpqqpie.mongodb.ne
 	else
 	end;
 ```
-<li>Agregar opcion en menu para crear nueva base de datos</li>
-<li>Agregar opcion en menu para limpiar output</li>
-<li>Agregar Empty State</li>
-<li>Mejorar esteticamente el programa(Nuevos menus, colores, animaciones etc)</li>
-</ul>
 
-<h1>+++BadBoyz:+++</h1>
 ```
++++BadBoyz:+++
+
                   .--""""--.
 nnnnnnnnnnnnnnnn,'.n*""""*N.`.#######################
 NNNNNNNNNNNNNNN/ J',n*""*n.`L \##### ### ### ### ####
@@ -78,11 +79,8 @@ NNNNNNNNNNNNNNNNNN`-..__..-'NNNNNNNNNNNNNNNNNNNNNNNNN
 <li>Refinar busqueda(implemetar islike etc)</li>
 <li>Deployment</li>
 </ul>
-
-<h1>+++Devil Shit:+++</h1>
-
 ```
-
++++Devil Shit:+++
 
           (                      )
           |\    _,--------._    / |
@@ -101,7 +99,7 @@ NNNNNNNNNNNNNNNNNN`-..__..-'NNNNNNNNNNNNNNNNNNNNNNNNN
            -.______  \ . /  ______,-
                    `.     ,'            
 ```
-<ul>
-<li>Permitir ver y gestionar bases de datos creadas con este programa(Atlas API)</li>
-<li>Implementar custom_schema y editar schemas predefinidos</li> 
-</ul>
+
+Permitir ver y gestionar bases de datos creadas con este programa(Atlas API)
+Implementar custom_schema y editar schemas predefinidos 
+
