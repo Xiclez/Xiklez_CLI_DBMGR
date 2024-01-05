@@ -10,7 +10,7 @@ def delete_document(collection, schema):
     if documents is None or len(documents) == 0:
         return
 
-    # Opciones de eliminación
+  
     print("\nSeleccione el documento que desea eliminar:")
     for i, doc in enumerate(documents):
         print(f"{i + 1}. {doc}")
@@ -23,7 +23,7 @@ def delete_document(collection, schema):
             print("Eliminación cancelada.")
             return
         elif choice == 99:
-            # Confirmar antes de eliminar todos
+            
             confirm = input("¿Está seguro de que desea eliminar TODOS los documentos encontrados? (y/n): ")
             if confirm.lower() == 'y':
                 ids_to_delete = [doc["_id"] for doc in documents]
